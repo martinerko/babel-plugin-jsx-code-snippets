@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "airbnb-base"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "global-require": "off"
+  },
+  "env": {
+    "node": true,
+    "mocha": true
+  }
+}
