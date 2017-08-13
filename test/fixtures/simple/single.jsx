@@ -3,15 +3,19 @@ const React = require('react');
 
 module.exports = () => (
   <div>
+    <SnippetTarget code="snippet1" />
     I will simply duplicate this content:
     <SnippetSource code="snippet1">
-      <section>
+      <section className="headline">
+        <header>JSX is cool</header>
+        <p>Let's try it!</p>
+      </section>
+      <section className="headline">
         <header>JSX is cool</header>
         <p>Let's try it!</p>
       </section>
     </SnippetSource>
     here:
-    <SnippetTarget code="snippet1" />
     <p>Because JSX is simply cool!</p>
   </div>
 );

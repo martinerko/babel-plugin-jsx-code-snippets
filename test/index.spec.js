@@ -16,12 +16,20 @@ describe('using one snippet pair', () => {
     assert(renderedContent.match(/<section[^>]*>/).length, 2);
   });
 
+  it('should not loose class attribute', () => {
+    assert(renderedContent.match(/class="headline"/).length, 1);
+  });
+
   it(`should not render any ${SOURCE_TAG} tag`, () => {
     expect(renderedContent).not.to.contain(SOURCE_TAG);
   });
 
   it(`should not render any ${TARGET_TAG} tag`, () => {
     expect(renderedContent).not.to.contain(TARGET_TAG);
+  });
+
+  it(`should replace ${SOURCE_TAG} and ${TARGET_TAG} tag with divs`, () => {
+    assert(renderedContent.match(/<div data-snippet-code="snippet1"/).length, 2);
   });
 });
 
@@ -69,12 +77,6 @@ describe('when encountering errors', () => {
   it(`should fail when "code" attribute of ${SOURCE_TAG} and ${TARGET_TAG} is different`, () => {
     expect(() => {
       require('./fixtures/errors/differentCodes.jsx');
-    }).to.throw(Error);
-  });
-
-  it(`should fail when ${SOURCE_TAG} tag contains more than one direct child`, () => {
-    expect(() => {
-      require('./fixtures/errors/multipleChildren.jsx');
     }).to.throw(Error);
   });
 });

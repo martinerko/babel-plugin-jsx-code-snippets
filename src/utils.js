@@ -1,28 +1,35 @@
+const { SOURCE_TAG } = require('./constants');
+
 function getSnippetCodeAttribute(path) {
   // code attribute is mandatory since it helps with pairing source and target
-  const [code] = path.node.openingElement.attributes.filter(attr => attr.name.name === 'code');
-  if (!code) {
+  const [codeAttr] = path.node.openingElement.attributes.filter(attr => attr.name.name === 'code');
+  if (!codeAttr) {
     throw path.buildCodeFrameError(
       `
       ${path.node.openingElement.name.name} element requires "code" attribute to be a non-empty string.`
     );
   }
-  return code.value.value;
+  return codeAttr;
 }
 
 function getChildren(path, babel) {
   const children = babel.types.react.buildChildren(path.node);
-  if (children.length !== 1) {
+  if (!children.length) {
     throw path.buildCodeFrameError(
       `
-      ${path.node.openingElement.name.name} element expects 1 child.
+      ${SOURCE_TAG} element expects at least 1 child.
       ${path.node.children.length > 1 ? 'Tip: simply wrap your nested elements into one parent <div> element.' : ''}`
     );
   }
   return children;
 }
 
+function replace(path, node) {
+  path.replaceWith(node);
+}
+
 module.exports = {
   getSnippetCodeAttribute,
-  getChildren
+  getChildren,
+  replace
 };
