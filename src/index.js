@@ -15,6 +15,7 @@ module.exports = function jsxCodeSnippetsPlugin(babel) {
           // check if related target has been already processed
           if (code in this.cache[TARGET_TAG]) {
             this.cache[TARGET_TAG][code].path.replaceWithMultiple(children);
+            this.cache[TARGET_TAG][code] = undefined;
           } else {
             this.cache[SOURCE_TAG][code] = {
               children
