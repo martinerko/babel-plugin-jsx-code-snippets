@@ -12,7 +12,7 @@ As a prerequisite, you need to have [Babel](https://github.com/babel/babel) inst
 Install via npm:
 
 ```
-  npm install --save-dev babel-plugin-jsx-code-snippets
+  npm install --save-dev martinerko/babel-plugin-jsx-code-snippets
 ```
 
 Then you only need to specify *JSX-Code-Snippets* as Babel plugin, which you would typically do in your `.babelrc`.
